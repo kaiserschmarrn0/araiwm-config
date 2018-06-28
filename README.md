@@ -1,6 +1,6 @@
 araiwm - arai window manager
 ----------------------------
-manages windows no da
+manages windows (and a config file!) no da
 
 Requirements
 ------------
@@ -8,11 +8,12 @@ XCB header files
 
 Configuration
 -------------
-araiwm is configured by editing config.h and recompiling
+araiwm-config is configured by editing ~/.config/araiwm.conf and restarting
+an example araiwm.conf is provided in the repository
 
 Installation
 ------------
-after completing the configuration steps described above, install using
+install using
 
 	make install clean
 
@@ -24,4 +25,4 @@ edit the dm/startarai script with programs you want to run along araiwm, like a 
 
 Todo
 ----
-config branch
+nothing!

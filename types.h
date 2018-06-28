@@ -15,6 +15,11 @@ typedef struct client {
 	int max, x, y, w, h;
 } client;
 
+typedef struct {
+	char *key;
+	uint32_t *var;
+} confitem;
+
 static void arai_kill();
 static void arai_center();
 static void arai_cycle();

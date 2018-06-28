@@ -6,6 +6,8 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <string.h>
+#include <stdint.h>
 #include "config.h"
 
 enum { FOCUS, UNFOCUS };
@@ -19,6 +21,47 @@ static xcb_window_t		focuswindow;
 static xcb_atom_t 		atoms[2];
 static client			*wslist[NUM_WS] = { NULL };
 static int			curws = 0;
+
+static uint32_t BORDER = 5,
+    	 GAP = 9,
+   	 TOP = 33,
+   	 BOT = 0,
+   	 SNAP_X = 4,
+   	 SNAP_Y = 200,
+	 FOCUSCOLOR = 0x9baeb1,
+	 UNFOCUSCOLOR = 0x12333b;
+
+static const confitem items[] = {
+	{ "border",	&BORDER       },
+	{ "gap",	&GAP          },
+	{ "top",	&TOP   	      },
+	{ "bot",	&BOT          },
+	{ "snap_x",	&SNAP_X       },
+	{ "snap_y",	&SNAP_Y       },
+	{ "focuscol",	&FOCUSCOLOR   },
+	{ "unfocuscol",	&UNFOCUSCOLOR },
+};
+
+static void
+parse(char *file)
+{
+	char key[STR_MAX];
+	uint32_t val;
+	FILE *fconf;
+	if (!(fconf = fopen(file, "r"))) return;
+	while (!feof(fconf)) {
+		fscanf(fconf, "%s ", &key);
+		if (strcmp(key, "unfocuscol") == 0 || strcmp(key, "focuscol") == 0) fscanf(fconf, "= %x", &val);
+		else fscanf(fconf, "= %d", &val);
+		printf("araiwm: %s = %d\n", key, val);
+		for (int i = 0; i < sizeof(items)/sizeof(*items); i++) {
+			if (strcmp(key, items[i].key) == 0) {
+				*items[i].var = val;
+			}
+		}
+	}
+	fclose(fconf);
+}
 
 static void
 arai_init(void)
@@ -581,8 +624,15 @@ arai_cleanup(void)
 }
 
 int
-main(void)
+main(int argc, char **argv)
 {
+	if (argc > 2) {
+		printf("araiwm: too many arguments.\n");
+		return 0;
+	} else if (argc == 2) {
+		printf("araiwm: arg read.\n");
+		parse(argv[1]);
+	} else printf("araiwm: no config specified, using default.\n");
 	arai_init();
 	for (;;) arai_dive();
 	atexit(arai_cleanup);
