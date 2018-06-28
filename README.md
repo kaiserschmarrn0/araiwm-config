@@ -8,7 +8,7 @@ XCB header files
 
 Configuration
 -------------
-araiwm-config is configured by editing ~/.config/araiwm.conf and restarting
+araiwm-config is configured by editing an araiwm.conf file and restarting
 an example araiwm.conf is provided in the repository
 
 Installation
@@ -16,6 +16,11 @@ Installation
 install using
 
 	make install clean
+
+Launching araiwm
+----------------
+araiwm takes either no args, or the path to a config file
+if no config is provided, araiwm will use kaiser's defaults
 
 Display Managers
 ----------------
