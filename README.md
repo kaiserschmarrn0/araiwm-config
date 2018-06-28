@@ -11,6 +11,8 @@ Configuration
 araiwm-config is configured by editing an araiwm.conf file and restarting
 an example araiwm.conf is provided in the repository
 
+note that more advanced options like keybinds can be changed by editing config.h and recompiling
+
 Installation
 ------------
 install using
