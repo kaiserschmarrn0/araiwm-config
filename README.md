@@ -8,10 +8,10 @@ XCB header files
 
 Configuration
 -------------
-araiwm-config is configured by editing an araiwm.conf file and restarting
-an example araiwm.conf is provided in the repository
+araiwm-config is configured by editing an araiwm.conf file and restarting. 
+an example araiwm.conf is provided in the repository.
 
-note that more advanced options like keybinds can be changed by editing config.h and recompiling
+note that more advanced options like keybinds can be changed by editing config.h and recompiling.
 
 Installation
 ------------
@@ -21,7 +21,7 @@ install using
 
 Launching araiwm
 ----------------
-araiwm takes either no args, or the path to a config file
+araiwm takes either no args, or the path to a config file. 
 if no config is provided, araiwm will use kaiser's defaults
 
 Display Managers
